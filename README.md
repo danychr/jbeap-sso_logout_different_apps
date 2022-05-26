@@ -5,7 +5,7 @@ Para ejecutarlo se ocupa el script reproducer_logout.sh
 
 El escenario del error es el siguiente:
 - Se tienen dos aplicaciones JSF webapp_a y webapp_b
-- Se configura el un usuario en el ApplicationRealm.
+- Se configura un usuario en el ApplicationRealm.
 - Se configura el SSO.
 - Se deploya la aplicacion webapp_a en un standalone. (node1-webapp_a)
 - Se deploya la aplicacion webapp_b en otro standalone. (node2-webapp_b)
