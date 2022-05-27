@@ -2,6 +2,10 @@
 Script para reproducir un issue al hacer logout usando el SSO en Jboss EAP 7.4
 
 Para ejecutarlo se ocupa el script reproducer_logout.sh
+> Se puede ejecutar dentro de una carpeta del jboss eap 7.4 o configurando la variable de ambiente EAP_HOME.
+
+> Se pueden ver mas opciones de configuracion dentro del mismo script.
+
 
 El escenario del error es el siguiente:
 - Se tienen dos aplicaciones JSF webapp_a y webapp_b
