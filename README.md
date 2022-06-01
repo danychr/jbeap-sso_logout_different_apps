@@ -1,4 +1,5 @@
 # jbeap-sso_logout_different_apps
+## EAP 7
 Script para reproducir un issue al hacer logout usando el SSO en Jboss EAP 7.4
 
 Requerimientos:
@@ -30,3 +31,10 @@ Pasos que realiza la prueba:
 6. Se verifica que se solicita el login en node2-webapp_b.
 7. Se verifica que se solicita el login en node1-webapp_a.
 8. Se valida que no este asignado el usuario el valor del usuario en el login de node1-webapp_a. Este valor se asigna en el paso 2 al bean de sesion SeguridadMB.
+
+## EAP 6
+Branch: eap6
+
+Script para reproducir en el eap 6 donde este problema no ocurre.
+
+
