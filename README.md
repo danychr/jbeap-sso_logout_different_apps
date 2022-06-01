@@ -25,11 +25,8 @@ Pasos que realiza la prueba:
 1. Se verifica que se solicita el login en node1-webapp_a.
 2. Hacemos login en node1-webapp_a.
 3. Verificamos que estamos logueados en node1-webapp_a.
-4. Se obtiene el session id de node1-webapp_a.
-5. Verificamos que estamos logueados en node2-webapp_b gracias al SSO.
-6. Cerramos sesion en node2-webapp_b.
-7. Se verifica que se solicita el login en node2-webapp_b.
-8. Se verifica que se solicita el login en node1-webapp_a.
-9. Se obtiene el session id de node1-webapp_a.
-10. Se valida que el session id del paso 4 sea diferente al session id del paso 9. 
-Se supone que al cerra la sesion deberia cambiar el session id. Y es este punto donde falla porque ambos session id son iguales.
+4. Verificamos que estamos logueados en node2-webapp_b gracias al SSO.
+5. Cerramos sesion en node2-webapp_b.
+6. Se verifica que se solicita el login en node2-webapp_b.
+7. Se verifica que se solicita el login en node1-webapp_a.
+8. Se valida que no este asignado el usuario el valor del usuario en el login de node1-webapp_a. Este valor se asigna en el paso 2 al bean de sesion SeguridadMB.
