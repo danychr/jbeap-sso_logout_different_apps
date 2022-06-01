@@ -84,16 +84,12 @@ public class LogoutOnNonOwnerNodeDifferentAppTest {
             logRequestResponse(step3, node1Address + WEBAPP_A_CONTEXT, body);
             Assert.assertFalse("First authentication did not succeed - subsequent GET failed", body.contains(AUTH_CHALLENGE_STRING));
 
-            String step4 ="4.-      - (node1-webapp_a) - we extract the session id.";
-            String sessionIdAfterLogin = getSessionIDFromBody(body);
-            LOGGER.info(" Step: {} sessionIdAfterLogin:{}", step4, sessionIdAfterLogin);
-
-            String step5 ="5.- GET  - (node2-webapp_b) - verify we're authenticated";
+            String step4 ="4.- GET  - (node2-webapp_b) - verify we're authenticated";
             body = getResponseBody(closeableHttpClient.execute(new HttpGet(node2Address + WEBAPP_B_CONTEXT)));
-            logRequestResponse(step5, node2Address + WEBAPP_B_CONTEXT, body);
+            logRequestResponse(step4, node2Address + WEBAPP_B_CONTEXT, body);
             Assert.assertFalse("First authentication did not succeed - we're not authenticated on second node", body.contains(AUTH_CHALLENGE_STRING));
 
-            String step6 = "6.- POST - (node2-webapp_b) - log out";
+            String step5 = "5.- POST - (node2-webapp_b) - log out";
         	viewState = getViewState(body);
             httpUriRequest = RequestBuilder
                     .post()
@@ -103,25 +99,25 @@ public class LogoutOnNonOwnerNodeDifferentAppTest {
                     .addParameter("frmCerrarSesion:lnkLogout", "frmCerrarSesion:lnkLogout")
                     .build();
             body = getResponseBody(closeableHttpClient.execute(httpUriRequest));
-            logRequestResponse(step6, node2Address + WEBAPP_B_CONTEXT, body);
+            logRequestResponse(step5, node2Address + WEBAPP_B_CONTEXT, body);
 
-            String step7 = "7.- GET  - (node2-webapp_b) - verify we need to authenticate";
+            String step6 = "6.- GET  - (node2-webapp_b) - verify we need to authenticate";
             body = getResponseBody(closeableHttpClient.execute(new HttpGet(node2Address + WEBAPP_B_CONTEXT)));
-            logRequestResponse(step7, node2Address + WEBAPP_B_CONTEXT, body);
+            logRequestResponse(step6, node2Address + WEBAPP_B_CONTEXT, body);
             Assert.assertTrue("We're still authenticated after we logged out (invalidated the last session)", body.contains(AUTH_CHALLENGE_STRING));
 
-            String step8 = "8.- GET  - (node1-webapp_a) - verify we need to authenticate";
+            String step7 = "7.- GET  - (node1-webapp_a) - verify we need to authenticate";
             body = getResponseBody(closeableHttpClient.execute(new HttpGet(node1Address + WEBAPP_A_CONTEXT)));
-            logRequestResponse(step8, node1Address + WEBAPP_A_CONTEXT, body);
+            logRequestResponse(step7, node1Address + WEBAPP_A_CONTEXT, body);
             Assert.assertTrue("We're still authenticated after we logged out (invalidated the last session)", body.contains(AUTH_CHALLENGE_STRING));
 
-            String step9 = "9.-      - (node1-webapp_a) - we extract the session id.";
-            String sessionIdAfterLogout = getSessionIDFromBody(body);
-            LOGGER.info("Step: {} sessionIdAfterLogout:{}", step9, sessionIdAfterLogout);
-
-            String step10 ="10.-     - (node1-webapp_a) - we validate that the session id from the first login is different after logout.";
-            LOGGER.info("Step: {}  \n sessionIdAfterLogin: {} \n sessionIdAfterLogout:{}", step10, sessionIdAfterLogin, sessionIdAfterLogout);
-            Assert.assertFalse("The session id since login is still the same after logout on node1-webapp_a.", sessionIdAfterLogin.equals(sessionIdAfterLogout));
+            String valueUser = "value=\"user\"";
+            String issueExplain = "indicates that the javax.enterprise.context.SessionScoped SeguridadMB is the same since we logged in the second step and it kept the value \"user\" for the input txtUsername.";
+            String step8 ="8.-      - (node1-webapp_a) - we validate that "+ valueUser + " isnt present. If its present " + issueExplain;
+            LOGGER.info("Step: {}", step8);
+            Assert.assertFalse(valueUser + " is present. This " + issueExplain, body.contains(valueUser));
+            
+            
         }
     }
 

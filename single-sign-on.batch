@@ -1,2 +1,1 @@
-embed-server --server-config=standalone-ha.xml
-/subsystem=undertow/server=default-server/host=default-host/setting=single-sign-on:add()
+/subsystem=web/virtual-server=default-host/sso=configuration:add(cache-container="web",cache-name="sso",reauthenticate="false")
