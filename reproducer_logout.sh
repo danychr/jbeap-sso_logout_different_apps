@@ -74,7 +74,7 @@ RETURN_VALUE=$?
 # stop EAP servers
 #echo "Stopping EAP servers"
 $EAP_HOME/bin/jboss-cli.sh --connect command=:shutdown
-$EAP_HOME/bin/jboss-cli.sh --connect --controller=localhost:10090 command=:shutdown
+$EAP_HOME/bin/jboss-cli.sh --connect --controller=localhost:10099 command=:shutdown
 
 # evaluate
 if [ $RETURN_VALUE == 0 ] ; then
