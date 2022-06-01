@@ -1,6 +1,11 @@
 # jbeap-sso_logout_different_apps
 Script para reproducir un issue al hacer logout usando el SSO en Jboss EAP 7.4
 
+Requerimientos:
+- Jboss EAP 7.4
+- Maven
+- Java 8
+
 Para ejecutarlo se ocupa el script reproducer_logout.sh
 > Se puede ejecutar dentro de una carpeta del jboss eap 7.4 o configurando la variable de ambiente EAP_HOME.
 
